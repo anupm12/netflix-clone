@@ -1,12 +1,12 @@
 import React from "react";
 import jumboData from "../fixtures/jumbo.json";
-import { Jumbotron } from "../components/jumbotron/index";
+import { Jumbotron } from "../components/index";
 
-export const JumbotronContainer = () => {
+const JumbotronContainer = () => {
   return (
     <div className="flex flex-col">
       {jumboData.map((item) => (
-        <Jumbotron key={item.id} direction={item.direction}>
+        <Jumbotron key={item.id}>
           <div className="flex w-full py-5 items-center justify-center border-b-2 border-gray-900">
             <div
               className={`flex sm:${item.direction} flex-col items-center justify-center md:w-3/5`}
@@ -25,3 +25,5 @@ export const JumbotronContainer = () => {
     </div>
   );
 };
+
+export default JumbotronContainer;
