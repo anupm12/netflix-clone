@@ -76,7 +76,7 @@ export const Body = styled.div`
   white-space: pre-wrap;
   user-select: none;
   overflow: hidden;
-
+  padding: 20px;
   &.closed {
     max-height: 0;
     overflow: hidden;
