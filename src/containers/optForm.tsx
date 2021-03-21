@@ -15,11 +15,6 @@ const OptFormContainer = () => {
             type="button"
           >
             GET STARTED
-            {/* <img
-              className=""
-              src="/images/icons/right.png"
-              alt="Right arrow"
-            /> */}
           </button>
         </div>
       </form>
