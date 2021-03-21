@@ -6,15 +6,20 @@ const OptFormContainer = () => {
       <form className="w-full">
         <div className="flex items-center py-2">
           <input
-            className="bg-white border-none w-full text-gray-700 py-3 sm:py-5 px-2 leading-tight focus:outline-none"
+            className="bg-white border-none w-3/4 h-12 sm:h-16 text-gray-700 py-3 sm:py-5 px-2 focus:outline-none"
             type="text"
-            placeholder="email@example.com"
+            placeholder="Email address"
           />
           <button
-            className="flex-shrink-0 bg-red-600 hover:bg-red-600 text-sm text-white py-3 sm:py-5 px-3 sm:px-10"
+            className="bg-red-600 hover:bg-red-600 w-1/3 h-12 sm:h-16 text-xs sm:text-lg font-semibold text-white"
             type="button"
           >
-            TRY IT NOW
+            GET STARTED
+            {/* <img
+              className=""
+              src="/images/icons/right.png"
+              alt="Right arrow"
+            /> */}
           </button>
         </div>
       </form>
