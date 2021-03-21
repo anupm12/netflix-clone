@@ -121,8 +121,8 @@ const FooterContainer = () => {
               </a>
             </div>
           </div>
-          <div className="pb-10">
-            <p className="text-sm text-gray-600 pt-4">Netflix India</p>
+          <div className="pb-2">
+            <p className="text-sm text-gray-600 pt-6">Netflix India</p>
           </div>
         </div>
       </div>

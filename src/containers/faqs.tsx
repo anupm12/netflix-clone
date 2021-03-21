@@ -1,5 +1,6 @@
 import { Accordion } from "../components";
 import faqsData from "../fixtures/faqs.json";
+import OptFormContainer from "../containers/optForm";
 
 const FaqsContainer = () => {
   return (
@@ -11,6 +12,7 @@ const FaqsContainer = () => {
           <Accordion.Body>{item.body}</Accordion.Body>
         </Accordion.Item>
       ))}
+      <OptFormContainer />
     </Accordion>
   );
 };
