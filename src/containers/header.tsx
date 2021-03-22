@@ -17,7 +17,7 @@ const HeaderContainer: React.FC = () => {
         </a>
       </div>
 
-      <div className="flex flex-col items-center py-10 sm:py-32 w-full border-b-8 border-gray-800">
+      <div className="flex flex-col items-center py-10 sm:pt-20 sm:pb-44 w-full border-b-8 border-gray-800">
         <div className="w-4/5 sm:w-2/3 text-center">
           <p className="pt-3 text-3xl sm:text-5xl font-bold">
             Unlimited movies, TV
