@@ -2,11 +2,14 @@ import JumbotronContainer from "../containers/jumbotron";
 import FooterContainer from "../containers/footer";
 import FaqsContainer from "../containers/faqs";
 import HeaderContainer from "../containers/header";
+import Feature from "../components/feature";
 
 const Home = () => {
   return (
     <>
-      <HeaderContainer />
+      <HeaderContainer>
+        <Feature />
+      </HeaderContainer>
       <JumbotronContainer />
       <FaqsContainer />
       <FooterContainer />

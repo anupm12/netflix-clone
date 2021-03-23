@@ -1,7 +1,14 @@
+import FooterContainer from "../containers/footer";
+import FormContainer from "../containers/form";
+import HeaderContainer from "../containers/header";
+
 const SignIn = () => {
   return (
     <>
-      <p>sign in!!</p>
+      <HeaderContainer>
+        <FormContainer />
+        <FooterContainer />
+      </HeaderContainer>
     </>
   );
 };

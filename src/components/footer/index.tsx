@@ -1,4 +1,3 @@
-//footer
 import React, { ReactNode } from "react";
 
 interface Ifooter {
