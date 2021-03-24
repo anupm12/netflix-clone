@@ -20,6 +20,26 @@ const SignUp = () => {
 
   const handleSignUp = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(emailAddress, password)
+      .then((result) => {
+        if (result.user != null)
+          result.user
+            .updateProfile({
+              displayName: firstName,
+              photoURL: (Math.floor(Math.random() * 5) + 1).toString(),
+            })
+            .then(() => {
+              history.push(ROUTES.BROWSE);
+            });
+      })
+      .catch((error) => {
+        setFirstName("");
+        setEmailAddress("");
+        setPassword("");
+        setError("");
+      });
   };
 
   return (
@@ -34,7 +54,7 @@ const SignUp = () => {
               type="text"
               placeholder="First name"
               value={firstName}
-              handleChange={(value) => setEmailAddress(value)}
+              handleChange={(value) => setFirstName(value)}
             />
 
             <Form.Input
