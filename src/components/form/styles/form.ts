@@ -22,13 +22,11 @@ export const Error = styled.div`
   padding: 15px 20px;
 `;
 
-export const Base = styled.div`
-  form {
-    display: flex;
-    flex-direction: column;
-    max-width: 450px;
-    width: 100%;
-  }
+export const Base = styled.form`
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  width: 100%;
 `;
 
 export const Title = styled.h1`
@@ -51,7 +49,7 @@ export const TextSmall = styled.p`
   color: #8c8c8c;
 `;
 
-export const Link = styled.a`
+export const Href = styled.span`
   color: #fff;
   text-decoration: none;
 
@@ -60,39 +58,35 @@ export const Link = styled.a`
   }
 `;
 
-export const Input = styled.div`
-  input {
-    background: #333;
-    width: 100%;
-    border-radius: 4px;
-    border: 0;
-    color: #fff;
-    height: 50px;
-    line-height: 50px;
-    padding: 5px 20px;
-    margin-bottom: 20px;
+export const Input = styled.input`
+  background: #333;
+  width: 100%;
+  border-radius: 4px;
+  border: 0;
+  color: #fff;
+  height: 50px;
+  line-height: 50px;
+  padding: 5px 20px;
+  margin-bottom: 20px;
 
-    &:last-of-type {
-      margin-bottom: 30px;
-    }
+  &:last-of-type {
+    margin-bottom: 30px;
   }
 `;
 
-export const Submit = styled.div`
-  button {
-    background: #e50914;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: bold;
-    width: 100%;
-    padding: 16px;
-    margin-bottom: 15px;
-    border: 0;
-    color: white;
-    cursor: pointer;
+export const Submit = styled.button`
+  background: #e50914;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 15px;
+  border: 0;
+  color: white;
+  cursor: pointer;
 
-    &:disabled {
-      opacity: 0.5;
-    }
+  &:disabled {
+    opacity: 0.5;
   }
 `;

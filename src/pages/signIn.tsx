@@ -18,7 +18,6 @@ const SignIn = () => {
 
   const handleSignIn = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("hhh");
     firebase
       .auth()
       .signInWithEmailAndPassword(emailAddress, password)
@@ -57,7 +56,7 @@ const SignIn = () => {
 
           <Form.Text>
             New to Netflix?{" "}
-            <Form.Link to={ROUTES.SIGN_UP}>Sign up now.</Form.Link>
+            <Form.Link to={ROUTES.SIGN_UP} value="Sign Up now." />
           </Form.Text>
           <Form.TextSmall>
             This page is protected by Google reCAPTCHA to ensure you are not a

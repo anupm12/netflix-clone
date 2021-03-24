@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Link } from "react-router-dom";
 import {
   Container,
   Error,
@@ -6,7 +7,7 @@ import {
   Title,
   Text,
   TextSmall,
-  Link,
+  Href,
   Input,
   Submit,
 } from "./styles/form";
@@ -25,7 +26,8 @@ interface FormType {
   Text: React.FC<IForm>;
   TextSmall: React.FC<IForm>;
   Link: React.FC<{
-    to: String;
+    to: string;
+    value: string;
   }>;
   Input: React.FC<{
     type: string;
@@ -45,10 +47,8 @@ const Form: React.FC<IForm> & FormType = ({ children }) => {
 
 Form.Base = function FormBase({ children, onSubmit, method }) {
   return (
-    <Base>
-      <form onSubmit={(event) => onSubmit(event)} method={method}>
-        {children}
-      </form>
+    <Base onSubmit={(event) => onSubmit(event)} method={method}>
+      {children}
     </Base>
   );
 };
@@ -69,29 +69,29 @@ Form.TextSmall = function FormTextSmall({ children, ...restProps }) {
   return <TextSmall>{children}</TextSmall>;
 };
 
-Form.Link = function FormLink({ children, ...restProps }) {
-  return <Link>{children}</Link>;
+Form.Link = function FormLink({ to, value }) {
+  return (
+    <Href>
+      <Link to={to}>{value}</Link>
+    </Href>
+  );
 };
 
 Form.Input = function FormInput({ value, type, placeholder, handleChange }) {
   return (
-    <Input>
-      <input
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={({ target }) => handleChange(target.value)}
-      />
-    </Input>
+    <Input
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={({ target }) => handleChange(target.value)}
+    />
   );
 };
 
 Form.Submit = function FormSubmit({ disabled, type }) {
   return (
-    <Submit>
-      <button disabled={disabled} type={type}>
-        Sign In
-      </button>
+    <Submit disabled={disabled} type={type}>
+      Sign In
     </Submit>
   );
 };
