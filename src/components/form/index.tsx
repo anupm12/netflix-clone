@@ -17,8 +17,8 @@ interface IForm {
 
 interface FormType {
   Base: React.FC<{
-    onSubmit: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    method: string;
+    onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+    method: "POST";
   }>;
   Error: React.FC<IForm>;
   Title: React.FC<IForm>;
@@ -28,36 +28,41 @@ interface FormType {
     to: String;
   }>;
   Input: React.FC<{
-    type: String;
-    placeholder: String;
-    value: String;
-    onChange: (value: React.SetStateAction<string>) => void;
-    autoComplete?: String;
+    type: string;
+    placeholder: string;
+    value: string;
+    handleChange: (value: React.SetStateAction<string>) => void;
   }>;
   Submit: React.FC<{
-    disabled: Boolean;
-    type: String;
+    disabled: boolean;
+    type: "submit";
   }>;
 }
 
-const Form: React.FC<IForm> & FormType = ({ children, ...restProps }) => {
+const Form: React.FC<IForm> & FormType = ({ children }) => {
   return <Container>{children}</Container>;
 };
 
-Form.Base = function FormBase({ children, ...restProps }) {
-  return <Base>{children}</Base>;
+Form.Base = function FormBase({ children, onSubmit, method }) {
+  return (
+    <Base>
+      <form onSubmit={(event) => onSubmit(event)} method={method}>
+        {children}
+      </form>
+    </Base>
+  );
 };
 
 Form.Error = function FormError({ children, ...restProps }) {
-  return <Error {...restProps}>{children}</Error>;
+  return <Error>{children}</Error>;
 };
 
 Form.Title = function FormTitle({ children, ...restProps }) {
-  return <Title {...restProps}>{children}</Title>;
+  return <Title>{children}</Title>;
 };
 
 Form.Text = function FormText({ children, ...restProps }) {
-  return <Text {...restProps}>{children}</Text>;
+  return <Text>{children}</Text>;
 };
 
 Form.TextSmall = function FormTextSmall({ children, ...restProps }) {
@@ -68,12 +73,27 @@ Form.Link = function FormLink({ children, ...restProps }) {
   return <Link>{children}</Link>;
 };
 
-Form.Input = function FormInput({ children, ...restProps }) {
-  return <Input>{children}</Input>;
+Form.Input = function FormInput({ value, type, placeholder, handleChange }) {
+  return (
+    <Input>
+      <input
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        onChange={({ target }) => handleChange(target.value)}
+      />
+    </Input>
+  );
 };
 
-Form.Submit = function FormSubmit({ children, ...restProps }) {
-  return <Submit>{children}</Submit>;
+Form.Submit = function FormSubmit({ disabled, type }) {
+  return (
+    <Submit>
+      <button disabled={disabled} type={type}>
+        Sign In
+      </button>
+    </Submit>
+  );
 };
 
 export default Form;

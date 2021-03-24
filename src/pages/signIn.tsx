@@ -1,19 +1,35 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import { FirebaseContext } from "../context/firebase";
 import { Form } from "../components";
 import FooterContainer from "../containers/footer";
 import HeaderContainer from "../containers/header";
 import * as ROUTES from "../constants/routes";
 
 const SignIn = () => {
+  const history = useHistory();
+  const { firebase } = useContext(FirebaseContext);
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const isInvalid: Boolean = password === "" || emailAddress === "";
+  const isInvalid: boolean = password === "" || emailAddress === "";
 
-  const handleSignIn = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSignIn = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log("hhh");
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(emailAddress, password)
+      .then(() => {
+        history.push(ROUTES.BROWSE);
+      })
+      .catch((error) => {
+        setEmailAddress("");
+        setPassword("");
+        setError(error.message);
+      });
   };
 
   return (
@@ -28,19 +44,15 @@ const SignIn = () => {
               type="text"
               placeholder="Email address"
               value={emailAddress}
-              onChange={({ target }: any) => setEmailAddress(target.value)}
+              handleChange={(value) => setEmailAddress(value)}
             />
-
             <Form.Input
               type="password"
-              placeholder="Password"
+              placeholder="password"
               value={password}
-              autoComplete="off"
-              onChange={({ target }: any) => setPassword(target.value)}
+              handleChange={(value) => setPassword(value)}
             />
-            <Form.Submit disabled={isInvalid} type="submit">
-              Sign IN
-            </Form.Submit>
+            <Form.Submit disabled={isInvalid} type="submit" />
           </Form.Base>
 
           <Form.Text>
