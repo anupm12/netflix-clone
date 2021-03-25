@@ -2,7 +2,7 @@ import JumbotronContainer from "../containers/jumbotron";
 import FooterContainer from "../containers/footer";
 import FaqsContainer from "../containers/faqs";
 import HeaderContainer from "../containers/header";
-import Feature from "../components/feature";
+import { Feature } from "../components";
 
 const Home = () => {
   return (
