@@ -18,6 +18,7 @@ const SignIn = () => {
 
   const handleSignIn = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log(emailAddress);
     firebase
       .auth()
       .signInWithEmailAndPassword(emailAddress, password)
@@ -51,7 +52,7 @@ const SignIn = () => {
               value={password}
               handleChange={(value) => setPassword(value)}
             />
-            <Form.Submit disabled={isInvalid} type="submit" />
+            <Form.Submit disabled={isInvalid} type="submit" value="Sign in" />
           </Form.Base>
 
           <Form.Text>

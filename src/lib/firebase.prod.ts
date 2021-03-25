@@ -3,8 +3,6 @@ import "firebase/firestore";
 import "firebase/auth";
 // import { seedDatabase } from "../seed";
 
-// seed the database
-
 //config
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,

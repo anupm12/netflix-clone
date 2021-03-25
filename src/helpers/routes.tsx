@@ -1,15 +1,15 @@
 import React, { ReactNode } from "react";
 import { Redirect, Route } from "react-router-dom";
 
-interface IIsUserRedirect {
-  user: any;
-  loggedInPath: string;
+interface IUserRedirectType {
+  user: null | {};
+  loggedInPath?: string;
   children: ReactNode;
-  path?: string;
-  exact?: boolean;
+  path: string;
+  exact: boolean;
 }
 
-export const IsUserRedirect: React.FC<IIsUserRedirect> = ({
+export const IsUserRedirect: React.FC<IUserRedirectType> = ({
   user,
   loggedInPath,
   children,
@@ -38,14 +38,7 @@ export const IsUserRedirect: React.FC<IIsUserRedirect> = ({
   );
 };
 
-interface IProtectedRoute {
-  user: any;
-  path: string;
-  exact: boolean;
-  children: ReactNode;
-}
-
-export const ProtectedRoute: React.FC<IProtectedRoute> = ({
+export const ProtectedRoute: React.FC<IUserRedirectType> = ({
   user,
   children,
   ...rest

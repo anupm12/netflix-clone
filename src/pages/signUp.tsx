@@ -70,7 +70,7 @@ const SignUp = () => {
               value={password}
               handleChange={(value) => setPassword(value)}
             />
-            <Form.Submit disabled={isInvalid} type="submit" />
+            <Form.Submit disabled={isInvalid} type="submit" value="Sign Up" />
           </Form.Base>
 
           <Form.Text>

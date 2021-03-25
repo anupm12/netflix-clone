@@ -38,6 +38,7 @@ interface FormType {
   Submit: React.FC<{
     disabled: boolean;
     type: "submit";
+    value: string;
   }>;
 }
 
@@ -88,10 +89,10 @@ Form.Input = function FormInput({ value, type, placeholder, handleChange }) {
   );
 };
 
-Form.Submit = function FormSubmit({ disabled, type }) {
+Form.Submit = function FormSubmit({ disabled, type, value }) {
   return (
     <Submit disabled={disabled} type={type}>
-      Sign In
+      {value}
     </Submit>
   );
 };
