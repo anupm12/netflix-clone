@@ -3,7 +3,11 @@ import { useState, useEffect, useContext } from "react";
 import { FirebaseContext } from "../context/firebase";
 
 const useContent = (target: any) => {
-  const [content, setContent] = useState<any>([]);
+  const [content, setContent] = useState<
+    {
+      docId: string;
+    }[]
+  >([]);
   const { firebase } = useContext(FirebaseContext);
 
   useEffect(() => {
