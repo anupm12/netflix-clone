@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from "react";
+import BrowseContainer from "../containers/browse";
 import { useContent } from "../hooks";
 import { selectionFilter } from "../utils";
 
@@ -10,7 +11,7 @@ const Browse = () => {
 
   return (
     <>
-      <p>Browse!!</p>
+      <BrowseContainer slides={slides} />
     </>
   );
 };
