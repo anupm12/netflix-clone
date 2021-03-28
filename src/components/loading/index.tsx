@@ -2,7 +2,7 @@ import React from "react";
 import { LockBody, ReleaseBody, Spinner, Picture } from "./styles/loading";
 
 interface ILoading {
-  src: string;
+  src?: string;
 }
 
 interface ILoadingType {
