@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useContext, useEffect, useState } from "react";
+import Loading from "../components/loading";
 import { FirebaseContext } from "../context/firebase";
 import SelectProfileContainer from "./profiles";
 
@@ -23,12 +25,18 @@ const BrowseContainer: React.FC<IBrowse> = ({ slides }) => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 4000);
   }, [profile.displayName]);
 
   return (
     <>
-      <SelectProfileContainer user={user} setProfile={setProfile} />
+      {profile.displayName ? (
+        loading ? (
+          <Loading src={user.photoURL} />
+        ) : null
+      ) : (
+        <SelectProfileContainer user={user} setProfile={setProfile} />
+      )}
     </>
   );
 };
