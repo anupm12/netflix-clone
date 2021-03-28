@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Loading from "../components/loading";
+import { Loading } from "../components/";
 import { FirebaseContext } from "../context/firebase";
 import SelectProfileContainer from "./profiles";
 import * as ROUTES from "../constants/routes";
