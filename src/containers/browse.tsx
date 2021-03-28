@@ -6,6 +6,7 @@ import { FirebaseContext } from "../context/firebase";
 import SelectProfileContainer from "./profiles";
 import * as ROUTES from "../constants/routes";
 import logo from "../logo.svg";
+import styled, { StyledComponent } from "styled-components/macro";
 
 interface IBrowse {
   slides: {
@@ -39,7 +40,7 @@ const BrowseContainer: React.FC<IBrowse> = ({ slides }) => {
         ) : (
           <>
             <Loading.ReleaseBody />
-            {BrowseHeader()}
+            {BrowseHeader(user)}
           </>
         )
       ) : (
@@ -49,7 +50,7 @@ const BrowseContainer: React.FC<IBrowse> = ({ slides }) => {
   );
 };
 
-const BrowseHeader = (): JSX.Element => {
+const BrowseHeader = (user: any): JSX.Element => {
   return (
     <>
       <div
@@ -57,10 +58,48 @@ const BrowseHeader = (): JSX.Element => {
         style={{ backgroundImage: "url('/images/misc/joker1.jpg')" }}
       >
         <div className="flex justify-between py-5 px-3 sm:px-7">
-          <Link to={ROUTES.HOME} className="py-3 px-4">
-            <img src={logo} alt="NETFLIX" className="w-24 md:w-28 lg:w-32" />
-          </Link>
+          <div className="flex">
+            <Link to={ROUTES.HOME} className="py-3 px-4">
+              <img src={logo} alt="NETFLIX" className="w-24 md:w-28 lg:w-32" />
+            </Link>
+            <Link
+              to={""}
+              className="font-semibold text-base sm:text-xl px-2 sm:px-7 pt-4 "
+            >
+              Series
+            </Link>
+            <Link
+              to={""}
+              className="font-semibold text-base sm:text-xl px-2 sm:px-7 pt-4 "
+            >
+              Films
+            </Link>
+          </div>
+          <Dropdown>
+            <div className="dropdown inline-block relative">
+              <button className="font-semibold pt-3 px-4 sm:px-7 inline-flex items-center">
+                <img
+                  className="w-6 sm:w-10 pt-1 sm:pt-2"
+                  src={`/images/users/${user.photoURL}.png`}
+                  alt="User profile"
+                />
+              </button>
+              <ul className="dropdown-menu absolute hidden">
+                <li>
+                  <a className="bg-black py-2 px-2 sm:px-4 block" href="/">
+                    {user.displayName}
+                  </a>
+                </li>
+                <li>
+                  <a className="bg-black py-2 px-2 sm:px-4 block" href="/">
+                    Sign out
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </Dropdown>
         </div>
+
         <div className="px-2 sm:px-5 pb-40 sm:pb-56 pt-24 flex flex-col">
           <p className="text-3xl sm:text-4xl font-bold px-5 py-1 w-full sm:w-1/2">
             Watch Joker Now
@@ -77,5 +116,11 @@ const BrowseHeader = (): JSX.Element => {
     </>
   );
 };
+
+const Dropdown = styled.div`
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+`;
 
 export default BrowseContainer;
