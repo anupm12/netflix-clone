@@ -19,6 +19,7 @@ interface IBrowse {
 
 const BrowseContainer: React.FC<IBrowse> = ({ slides }) => {
   const { firebase } = useContext(FirebaseContext);
+
   const user: any = firebase.auth().currentUser || {};
   const [profile, setProfile] = useState<{
     displayName: string;
@@ -40,7 +41,7 @@ const BrowseContainer: React.FC<IBrowse> = ({ slides }) => {
         ) : (
           <>
             <Loading.ReleaseBody />
-            {BrowseHeader(user)}
+            {BrowseHeader(user, firebase)}
           </>
         )
       ) : (
@@ -50,7 +51,7 @@ const BrowseContainer: React.FC<IBrowse> = ({ slides }) => {
   );
 };
 
-const BrowseHeader = (user: any): JSX.Element => {
+const BrowseHeader = (user: any, firebase: any): JSX.Element => {
   return (
     <>
       <div
@@ -91,7 +92,11 @@ const BrowseHeader = (user: any): JSX.Element => {
                   </a>
                 </li>
                 <li>
-                  <a className="bg-black py-2 px-2 sm:px-4 block" href="/">
+                  <a
+                    className="bg-black py-2 px-2 sm:px-4 block"
+                    href="/"
+                    onClick={() => firebase.auth().signOut()}
+                  >
                     Sign out
                   </a>
                 </li>
