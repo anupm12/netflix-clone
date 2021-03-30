@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -8,6 +9,7 @@ import * as ROUTES from "../constants/routes";
 import logo from "../logo.svg";
 import styled, { StyledComponent } from "styled-components/macro";
 import FooterContainer from "./footer";
+import Fuse from "fuse.js";
 
 interface IBrowse {
   slides: {
@@ -42,6 +44,18 @@ const BrowseContainer: React.FC<IBrowse> = ({ slides }) => {
   }, [profile.displayName]);
 
   useEffect(() => setSlideRows(slides[category]), [slides, category]);
+
+  useEffect(() => {
+    const fuse = new Fuse(slideRows, {
+      keys: ["data.description", "data.title", "data.genre"],
+    });
+    const results = fuse.search(searchTerm).map(({ item }) => item);
+    if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
+      setSlideRows(results);
+    } else {
+      setSlideRows(slides[category]);
+    }
+  }, [category, searchTerm, slides]);
 
   return (
     <>
@@ -161,7 +175,6 @@ const BrowseHeader = (
         </div>
       </div>
 
-      {slideRows.map((slideItem: any) => console.log(slideItem))}
       <Card.Group>
         {slideRows.map((slideItem: any) => (
           <Card key={`${category}-${slideItem.title.toLowerCase()}`}>
