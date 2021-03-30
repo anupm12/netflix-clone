@@ -1,16 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Loading } from "../components/";
+import { Card, Loading } from "../components/";
 import { FirebaseContext } from "../context/firebase";
 import SelectProfileContainer from "./profiles";
 import * as ROUTES from "../constants/routes";
 import logo from "../logo.svg";
 import styled, { StyledComponent } from "styled-components/macro";
+import FooterContainer from "./footer";
 
 interface IBrowse {
   slides: {
-    series: {
+    [k: string]: {
       title: string;
       data: any;
     }[];
@@ -29,12 +30,18 @@ const BrowseContainer: React.FC<IBrowse> = ({ slides }) => {
 
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const [category, setCategory] = useState("series");
+  const [slideRows, setSlideRows] = useState<{ title: string; data: any }[]>(
+    []
+  );
 
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 4000);
   }, [profile.displayName]);
+
+  useEffect(() => setSlideRows(slides[category]), [slides, category]);
 
   return (
     <>
@@ -44,7 +51,16 @@ const BrowseContainer: React.FC<IBrowse> = ({ slides }) => {
         ) : (
           <>
             <Loading.ReleaseBody />
-            {BrowseHeader(user, firebase, searchTerm, setSearchTerm)}
+            {BrowseHeader(
+              user,
+              firebase,
+              searchTerm,
+              setSearchTerm,
+              category,
+              setCategory,
+              slideRows,
+              setSlideRows
+            )}
           </>
         )
       ) : (
@@ -58,7 +74,11 @@ const BrowseHeader = (
   user: any,
   firebase: any,
   searchTerm: any,
-  setSearchTerm: any
+  setSearchTerm: any,
+  category: any,
+  setCategory: any,
+  slideRows: any,
+  setSlideRows: any
 ): JSX.Element => {
   return (
     <>
@@ -71,18 +91,18 @@ const BrowseHeader = (
             <Link to={ROUTES.HOME} className="py-3 px-4">
               <img src={logo} alt="NETFLIX" className="w-24 md:w-28 lg:w-32" />
             </Link>
-            <Link
-              to={""}
-              className="font-semibold text-base sm:text-xl px-2 sm:px-7 pt-4 "
+            <p
+              onClick={() => setCategory("series")}
+              className="font-semibold text-base sm:text-xl px-2 sm:px-7 pt-4 cursor-pointer"
             >
               Series
-            </Link>
-            <Link
-              to={""}
-              className="font-semibold text-base sm:text-xl px-2 sm:px-7 pt-4 "
+            </p>
+            <p
+              onClick={() => setCategory("films")}
+              className="font-semibold text-base sm:text-xl px-2 sm:px-7 pt-4 cursor-pointer"
             >
               Films
-            </Link>
+            </p>
           </div>
           <div className="flex items-center">
             <Search className="pt-3 flex">
@@ -135,11 +155,42 @@ const BrowseHeader = (
             he projects in a futile attempt to feel like he's part of the world
             around him.
           </p>
-          <button className="w-1/6 mx-5 my-2 py-1 bg-gray-200 rounded text-black text-base hover:bg-red-600 transition-colors ">
+          <button className="w-1/6 mx-5 my-2 py-1 bg-gray-200 rounded text-black text-base font-bold hover:bg-red-600 transition-colors ">
             Play
           </button>
         </div>
       </div>
+
+      {slideRows.map((slideItem: any) => console.log(slideItem))}
+      <Card.Group>
+        {slideRows.map((slideItem: any) => (
+          <Card key={`${category}-${slideItem.title.toLowerCase()}`}>
+            <Card.Title>{slideItem.title}</Card.Title>
+            <Card.Entities>
+              {slideItem.data.map((item: any) => (
+                <Card.Item key={item.docId} item={item}>
+                  <Card.Image
+                    src={`/images/${category}/${item.genre}/${item.slug}/small.jpg`}
+                  />
+                  <Card.Meta>
+                    <Card.SubTitle>{item.title}</Card.SubTitle>
+                    <Card.Text>{item.description}</Card.Text>
+                  </Card.Meta>
+                </Card.Item>
+              ))}
+            </Card.Entities>
+            <Card.Feature category={category}>
+              {/* <Player>
+                <Player.Button />
+                <Player.Video src="/videos/bunny.mp4" />
+              </Player> */}
+              <p>hehehehe</p>
+            </Card.Feature>
+          </Card>
+        ))}
+      </Card.Group>
+
+      <FooterContainer />
     </>
   );
 };
