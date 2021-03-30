@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Card, Loading } from "../components/";
+import { Card, Loading, Player } from "../components/";
 import { FirebaseContext } from "../context/firebase";
 import SelectProfileContainer from "./profiles";
 import * as ROUTES from "../constants/routes";
@@ -180,11 +180,10 @@ const BrowseHeader = (
               ))}
             </Card.Entities>
             <Card.Feature category={category}>
-              {/* <Player>
+              <Player>
                 <Player.Button />
                 <Player.Video src="/videos/bunny.mp4" />
-              </Player> */}
-              <p>hehehehe</p>
+              </Player>
             </Card.Feature>
           </Card>
         ))}
