@@ -4,6 +4,7 @@ import * as ROUTES from "./constants/routes";
 import { Home, Browse, SignIn, SignUp } from "./pages";
 import { IsUserRedirect, ProtectedRoute } from "./helpers/routes";
 import { useAuthListener } from "./hooks";
+import SignUpBuild from "./pages/signUpBuild";
 
 function App() {
   const { user } = useAuthListener();
@@ -37,7 +38,7 @@ function App() {
         path={ROUTES.SIGN_UP}
         exact
       >
-        <SignUp />
+        {process.env.NODE_ENV === "production" ? <SignUpBuild /> : <SignUp />}
       </IsUserRedirect>
     </Router>
   );

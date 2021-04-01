@@ -30,10 +30,25 @@ const SignIn = () => {
       });
   };
 
+  const checkBuild = () => {
+    if (process.env.NODE_ENV === "production") {
+      return (
+        <p className="p-3 my-4 border border-red-600 rounded-lg text-lg">
+          Dummy credentials:
+          <br />
+          ID: hehe@gmail.com
+          <br />
+          Paswword: 123456
+        </p>
+      );
+    }
+  };
+
   return (
     <>
       <HeaderContainer>
         <Form>
+          {checkBuild()}
           <Form.Title>Sign In</Form.Title>
           {error && <Form.Error>{error}</Form.Error>}
 
