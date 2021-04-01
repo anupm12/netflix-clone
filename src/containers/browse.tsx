@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, Loading, Player } from "../components/";
@@ -54,6 +53,7 @@ const BrowseContainer: React.FC<IBrowse> = ({ slides }) => {
     } else {
       setSlideRows(slides[category]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category, searchTerm, slides]);
 
   return (

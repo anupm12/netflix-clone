@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import * as React from "react";
 import { useState, useContext, useEffect } from "react";
 import { FirebaseContext } from "../context/firebase";
 
