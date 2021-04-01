@@ -31,7 +31,7 @@ const SignIn = () => {
   };
 
   const checkBuild = () => {
-    if (process.env.NODE_ENV === "production") {
+    if (process.env.REACT_APP_NODE_ENV === "production") {
       return (
         <p className="p-3 my-4 border border-red-600 rounded-lg text-lg">
           Dummy credentials:

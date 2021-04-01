@@ -38,7 +38,11 @@ function App() {
         path={ROUTES.SIGN_UP}
         exact
       >
-        {process.env.NODE_ENV === "production" ? <SignUpBuild /> : <SignUp />}
+        {process.env.REACT_APP_NODE_ENV === "production" ? (
+          <SignUpBuild />
+        ) : (
+          <SignUp />
+        )}
       </IsUserRedirect>
     </Router>
   );
