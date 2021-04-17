@@ -9,7 +9,7 @@ const JumbotronContainer = () => {
         <Jumbotron key={item.id}>
           <div className="flex w-full py-5 items-center justify-center border-b-8 border-gray-800">
             <div
-              className={`flex lg:${item.direction} items-center justify-center lg:w-9/12`}
+              className={`flex ${item.direction} items-center justify-center lg:w-9/12`}
             >
               <div className="w-full lg:w-1/2 text-center lg:text-left">
                 <p className="text-3xl sm:text-4xl lg:text-5xl font-bold p-5">
